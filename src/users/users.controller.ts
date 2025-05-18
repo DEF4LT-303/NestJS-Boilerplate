@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Prisma } from '@prisma/client';
 import { Request } from 'express';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -36,12 +37,12 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'))
   async update(
     @Param('id') id: string,
-    @Body(ValidationPipe) updateUserDto: Prisma.UserUpdateInput,
+    @Body(ValidationPipe) updateUserDto: UpdateUserDto,
     @Req() req: Request
   ) {
     const loggedInUser = req.user as any;
 
-    if (loggedInUser.id !== id && loggedInUser.role !== 'ADMIN') {
+    if (loggedInUser.userId !== id && loggedInUser.role !== 'ADMIN') {
       throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
 
