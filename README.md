@@ -39,11 +39,12 @@
 
 <pre>
 
+prisma/                 # Prisma service
 src/
 │
 ├── auth/               # Auth module (login, register, JWT, guards)
+├── database/           # Database connection
 ├── users/              # Users module (CRUD, roles)
-├── prisma/             # Prisma service
 ├── common/             # Guards, decorators, interceptors, filters
 ├── app.module.ts       # Root module
 └── main.ts             # Entry point
@@ -114,4 +115,4 @@ npm run test:cov
 ## 📖 API Docs (Swagger)
 
 Once running, go to:  
-➡️ [http://localhost:3000/api](http://localhost:3000/api)
+➡️ [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
